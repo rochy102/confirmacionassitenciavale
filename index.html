@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Confirmación de Asistencia · Valentina XV</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --zafiro: #1a3a6e;
+    --zafiro-medio: #2a5298;
+    --zafiro-claro: #4a7cc8;
+    --zafiro-palido: #c8d8f0;
+    --marfil: #faf7f0;
+    --marfil-oscuro: #f0ead8;
+    --plateado: #c8cdd8;
+    --plateado-claro: #e8eaf0;
+    --plateado-brillante: #dde2ee;
+    --dorado-suave: #c8a96e;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--marfil);
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Fondo SVG floral */
+  .bg-floral {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .bg-floral svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Partículas flotantes */
+  @keyframes flotar {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
+    50% { transform: translateY(-12px) rotate(3deg); opacity: 0.7; }
+  }
+  @keyframes flotarB {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+    50% { transform: translateY(-8px) rotate(-2deg); opacity: 0.55; }
+  }
+
+  /* Card principal */
+  .card {
+    position: relative;
+    z-index: 2;
+    background: rgba(250, 247, 240, 0.94);
+    backdrop-filter: blur(12px);
+    max-width: 480px;
+    width: 100%;
+    border: 1px solid rgba(200, 205, 216, 0.6);
+    padding: 0;
+    overflow: hidden;
+    animation: aparecer 0.9s ease both;
+    box-shadow:
+      0 2px 40px rgba(26, 58, 110, 0.10),
+      0 0 0 1px rgba(200, 205, 216, 0.3),
+      inset 0 0 60px rgba(200, 205, 216, 0.05);
+  }
+
+  @keyframes aparecer {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Header de la card */
+  .card-header {
+    background: linear-gradient(160deg, var(--zafiro) 0%, var(--zafiro-medio) 60%, #1e4a8e 100%);
+    padding: 2.8rem 2.5rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(200,205,216,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(200,205,216,0.08) 0%, transparent 50%);
+  }
+
+  /* Ornamento superior */
+  .ornamento {
+    margin-bottom: 1rem;
+    opacity: 0.75;
+  }
+
+  .label-evento {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--plateado-claro);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+
+  .nombre-quince {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--marfil);
+    line-height: 1.0;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    letter-spacing: 0.02em;
+  }
+
+  .nombre-quince span {
+    display: block;
+    font-size: 28px;
+    font-weight: 300;
+    font-style: normal;
+    color: var(--plateado-claro);
+    letter-spacing: 0.08em;
+    margin-top: 0.1rem;
+  }
+
+  .xv-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    background: rgba(200, 205, 216, 0.18);
+    border: 1px solid rgba(200, 205, 216, 0.35);
+    padding: 0.35rem 1.2rem;
+    color: var(--plateado-brillante);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-style: italic;
+    letter-spacing: 0.12em;
+  }
+
+  /* Separador ornamental */
+  .sep {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.4rem 2.5rem 0;
+    color: var(--plateado);
+  }
+  .sep-line { flex: 1; height: 0.5px; background: linear-gradient(to right, transparent, var(--plateado), transparent); }
+  .sep-icon { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--dorado-suave); font-style: italic; }
+
+  /* Body del formulario */
+  .card-body {
+    padding: 1.4rem 2.5rem 2rem;
+  }
+
+  .fecha-evento {
+    text-align: center;
+    margin-bottom: 1.8rem;
+  }
+  .fecha-evento p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--zafiro-medio);
+    letter-spacing: 0.05em;
+  }
+  .fecha-evento strong {
+    font-size: 18px;
+    font-weight: 600;
+    font-style: normal;
+    display: block;
+    color: var(--zafiro);
+    margin-top: 0.1rem;
+  }
+
+  /* Campos */
+  .field {
+    margin-bottom: 1.4rem;
+  }
+
+  label.lbl {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--zafiro-claro);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  input[type="text"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--plateado);
+    padding: 0.55rem 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--zafiro);
+    outline: none;
+    transition: border-color 0.25s;
+    border-radius: 0;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  input[type="text"]:focus,
+  select:focus,
+  textarea:focus {
+    border-bottom-color: var(--zafiro-medio);
+  }
+
+  input::placeholder { color: var(--plateado); font-style: italic; font-size: 16px; }
+
+  select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a7cc8' stroke-width='1.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 2px center;
+    padding-right: 22px;
+    color: var(--zafiro);
+  }
+
+  select option { color: #222; font-family: 'Montserrat', sans-serif; font-size: 14px; }
+
+  /* Radio personalizado */
+  .radio-group {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--plateado);
+    overflow: hidden;
+    margin-top: 0.2rem;
+  }
+
+  .radio-opt {
+    flex: 1;
+    position: relative;
+  }
+
+  .radio-opt input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .radio-opt label {
+    display: block;
+    text-align: center;
+    padding: 0.65rem 0.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--zafiro-claro);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-right: 1px solid var(--plateado);
+    letter-spacing: 0.02em;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .radio-opt:last-child label { border-right: none; }
+
+  .radio-opt input[type="radio"]:checked + label {
+    background: var(--zafiro);
+    color: var(--marfil);
+    font-weight: 400;
+  }
+
+  /* Botón principal */
+  .btn-confirmar {
+    width: 100%;
+    margin-top: 1.8rem;
+    background: var(--zafiro);
+    color: var(--marfil);
+    border: none;
+    padding: 1rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s, opacity 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-confirmar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(200,205,216,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .btn-confirmar:hover { background: var(--zafiro-medio); }
+  .btn-confirmar:active { transform: scale(0.99); }
+  .btn-confirmar:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* Mensajes */
+  .msg {
+    display: none;
+    text-align: center;
+    padding: 1rem 1.2rem;
+    margin-top: 1.2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .msg.ok {
+    display: block;
+    color: #1a5c3a;
+    background: rgba(26, 92, 58, 0.07);
+    border: 0.5px solid rgba(26, 92, 58, 0.2);
+  }
+  .msg.err {
+    display: block;
+    color: #7a1c1c;
+    background: rgba(122, 28, 28, 0.07);
+    border: 0.5px solid rgba(122, 28, 28, 0.2);
+  }
+
+  /* Footer */
+  .card-footer {
+    background: var(--zafiro);
+    padding: 1rem 2.5rem;
+    text-align: center;
+  }
+
+  .card-footer p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--plateado-claro);
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+  }
+
+  /* Responsive */
+  @media (max-width: 520px) {
+    .nombre-quince { font-size: 36px; }
+    .card-header { padding: 2rem 1.5rem 2rem; }
+    .card-body { padding: 1.2rem 1.5rem 1.8rem; }
+    .sep { padding: 1.2rem 1.5rem 0; }
+    .card-footer { padding: 1rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Fondo floral SVG -->
+<div class="bg-floral">
+  <svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="bgMain" cx="50%" cy="40%" r="75%">
+        <stop offset="0%" stop-color="#eef3fb"/>
+        <stop offset="100%" stop-color="#dce8f8"/>
+      </radialGradient>
+    </defs>
+    <rect width="800" height="900" fill="url(#bgMain)"/>
+
+    <!-- === ESQUINA SUPERIOR IZQUIERDA === -->
+    <g opacity="0.62">
+      <!-- flor grande central -->
+      <ellipse cx="70" cy="65" rx="48" ry="26" fill="#7a9fd8" transform="rotate(-35 70 65)"/>
+      <ellipse cx="45" cy="88" rx="44" ry="24" fill="#5a80c0" transform="rotate(22 45 88)"/>
+      <ellipse cx="100" cy="38" rx="38" ry="22" fill="#90b5e0" transform="rotate(-60 100 38)"/>
+      <ellipse cx="68" cy="68" rx="22" ry="22" fill="#3a60a8"/>
+      <circle cx="68" cy="68" r="9" fill="#1a3a6e"/>
+      <!-- pétalos extra -->
+      <ellipse cx="18" cy="108" rx="36" ry="16" fill="#a0c0e8" transform="rotate(38 18 108)"/>
+      <ellipse cx="120" cy="22" rx="30" ry="14" fill="#c0d5f0" transform="rotate(-75 120 22)"/>
+      <!-- flor secundaria -->
+      <ellipse cx="195" cy="30" rx="28" ry="15" fill="#90b5e0" transform="rotate(-42 195 30)"/>
+      <ellipse cx="175" cy="50" rx="25" ry="14" fill="#6a90c8" transform="rotate(18 175 50)"/>
+      <circle cx="183" cy="42" r="11" fill="#3a60a8"/>
+      <circle cx="183" cy="42" r="4.5" fill="#1a3a6e"/>
+      <!-- flor pequeña -->
+      <ellipse cx="240" cy="78" rx="20" ry="11" fill="#a0c0e8" transform="rotate(-28 240 78)"/>
+      <ellipse cx="225" cy="92" rx="18" ry="10" fill="#80a8d8" transform="rotate(15 225 92)"/>
+      <circle cx="231" cy="86" r="8" fill="#5a80c0"/>
+      <circle cx="231" cy="86" r="3" fill="#1a3a6e"/>
+      <!-- hojas -->
+      <ellipse cx="170" cy="110" rx="55" ry="12" fill="#4a6a9a" transform="rotate(-18 170 110)" opacity="0.55"/>
+      <ellipse cx="90" cy="155" rx="48" ry="10" fill="#3a5a8a" transform="rotate(68 90 155)" opacity="0.45"/>
+      <ellipse cx="270" cy="55" rx="42" ry="9" fill="#4a6a9a" transform="rotate(-12 270 55)" opacity="0.4"/>
+      <!-- bayas -->
+      <circle cx="185" cy="130" r="6" fill="#1a2a5e"/>
+      <circle cx="197" cy="118" r="5" fill="#2a3a70"/>
+      <circle cx="175" cy="143" r="5" fill="#1a2a5e"/>
+      <circle cx="210" cy="135" r="4" fill="#2a3a70"/>
+      <!-- tallos curvos -->
+      <path d="M68 90 Q120 140 80 190" stroke="#4a6a9a" stroke-width="1.5" fill="none" opacity="0.4"/>
+      <path d="M183 60 Q230 100 210 155" stroke="#4a6a9a" stroke-width="1.2" fill="none" opacity="0.35"/>
+    </g>
+
+    <!-- Flor flotante TL adicional -->
+    <g opacity="0.35" style="animation: flotar 6s ease-in-out infinite;">
+      <ellipse cx="290" cy="20" rx="18" ry="10" fill="#80a8d8" transform="rotate(-30 290 20)"/>
+      <circle cx="290" cy="20" r="6" fill="#5a80c0"/>
+      <circle cx="290" cy="20" r="2.5" fill="#1a3a6e"/>
+    </g>
+
+    <!-- === ESQUINA SUPERIOR DERECHA === -->
+    <g opacity="0.55">
+      <ellipse cx="730" cy="55" rx="44" ry="24" fill="#7a9fd8" transform="rotate(35 730 55)"/>
+      <ellipse cx="755" cy="80" rx="40" ry="22" fill="#5a80c0" transform="rotate(-22 755 80)"/>
+      <ellipse cx="700" cy="30" rx="35" ry="20" fill="#90b5e0" transform="rotate(58 700 30)"/>
+      <ellipse cx="732" cy="58" rx="20" ry="20" fill="#3a60a8"/>
+      <circle cx="732" cy="58" r="8" fill="#1a3a6e"/>
+      <ellipse cx="790" cy="108" rx="32" ry="15" fill="#a0c0e8" transform="rotate(-38 790 108)"/>
+      <ellipse cx="680" cy="18" rx="28" ry="13" fill="#c0d5f0" transform="rotate(72 680 18)"/>
+      <!-- flor secundaria TR -->
+      <ellipse cx="605" cy="35" rx="26" ry="14" fill="#90b5e0" transform="rotate(40 605 35)"/>
+      <ellipse cx="622" cy="52" rx="23" ry="13" fill="#6a90c8" transform="rotate(-18 622 52)"/>
+      <circle cx="614" cy="44" r="10" fill="#3a60a8"/>
+      <circle cx="614" cy="44" r="4" fill="#1a3a6e"/>
+      <!-- hojas TR -->
+      <ellipse cx="640" cy="105" rx="52" ry="11" fill="#4a6a9a" transform="rotate(18 640 105)" opacity="0.5"/>
+      <ellipse cx="720" cy="145" rx="44" ry="9" fill="#3a5a8a" transform="rotate(-65 720 145)" opacity="0.4"/>
+      <!-- bayas TR -->
+      <circle cx="625" cy="125" r="5.5" fill="#1a2a5e"/>
+      <circle cx="613" cy="113" r="4.5" fill="#2a3a70"/>
+      <circle cx="635" cy="138" r="4" fill="#1a2a5e"/>
+    </g>
+
+    <!-- === ESQUINA INFERIOR IZQUIERDA === -->
+    <g opacity="0.55">
+      <ellipse cx="65" cy="835" rx="46" ry="25" fill="#7a9fd8" transform="rotate(30 65 835)"/>
+      <ellipse cx="40" cy="810" rx="42" ry="23" fill="#5a80c0" transform="rotate(-25 40 810)"/>
+      <ellipse cx="95" cy="860" rx="36" ry="21" fill="#90b5e0" transform="rotate(55 95 860)"/>
+      <ellipse cx="65" cy="835" rx="21" ry="21" fill="#3a60a8"/>
+      <circle cx="65" cy="835" r="8.5" fill="#1a3a6e"/>
+      <ellipse cx="15" cy="790" rx="34" ry="15" fill="#a0c0e8" transform="rotate(-35 15 790)"/>
+      <ellipse cx="115" cy="875" rx="28" ry="13" fill="#c0d5f0" transform="rotate(70 115 875)"/>
+      <!-- flor secundaria BL -->
+      <ellipse cx="185" cy="870" rx="26" ry="14" fill="#90b5e0" transform="rotate(-38 185 870)"/>
+      <ellipse cx="165" cy="850" rx="23" ry="13" fill="#6a90c8" transform="rotate(18 165 850)"/>
+      <circle cx="174" cy="859" r="10" fill="#3a60a8"/>
+      <circle cx="174" cy="859" r="4" fill="#1a3a6e"/>
+      <!-- hojas BL -->
+      <ellipse cx="150" cy="800" rx="50" ry="11" fill="#4a6a9a" transform="rotate(-20 150 800)" opacity="0.5"/>
+      <ellipse cx="80" cy="765" rx="42" ry="9" fill="#3a5a8a" transform="rotate(70 80 765)" opacity="0.4"/>
+      <!-- bayas BL -->
+      <circle cx="190" cy="780" r="5.5" fill="#1a2a5e"/>
+      <circle cx="178" cy="769" r="4.5" fill="#2a3a70"/>
+      <circle cx="198" cy="793" r="4" fill="#1a2a5e"/>
+    </g>
+
+    <!-- === ESQUINA INFERIOR DERECHA === -->
+    <g opacity="0.60">
+      <ellipse cx="735" cy="838" rx="48" ry="26" fill="#7a9fd8" transform="rotate(-32 735 838)"/>
+      <ellipse cx="762" cy="812" rx="44" ry="24" fill="#5a80c0" transform="rotate(20 762 812)"/>
+      <ellipse cx="705" cy="862" rx="38" ry="22" fill="#90b5e0" transform="rotate(-58 705 862)"/>
+      <ellipse cx="735" cy="838" rx="22" ry="22" fill="#3a60a8"/>
+      <circle cx="735" cy="838" r="9" fill="#1a3a6e"/>
+      <ellipse cx="790" cy="795" rx="36" ry="16" fill="#a0c0e8" transform="rotate(36 790 795)"/>
+      <ellipse cx="680" cy="878" rx="30" ry="14" fill="#c0d5f0" transform="rotate(-72 680 878)"/>
+      <!-- flor secundaria BR -->
+      <ellipse cx="610" cy="858" rx="27" ry="15" fill="#90b5e0" transform="rotate(42 610 858)"/>
+      <ellipse cx="628" cy="838" rx="24" ry="13" fill="#6a90c8" transform="rotate(-16 628 838)"/>
+      <circle cx="620" cy="847" r="11" fill="#3a60a8"/>
+      <circle cx="620" cy="847" r="4.5" fill="#1a3a6e"/>
+      <!-- flor pequeña extra BR -->
+      <ellipse cx="560" cy="880" rx="20" ry="11" fill="#a0c0e8" transform="rotate(26 560 880)"/>
+      <circle cx="560" cy="880" r="7" fill="#5a80c0"/>
+      <circle cx="560" cy="880" r="3" fill="#1a3a6e"/>
+      <!-- hojas BR -->
+      <ellipse cx="645" cy="795" rx="52" ry="11" fill="#4a6a9a" transform="rotate(18 645 795)" opacity="0.5"/>
+      <ellipse cx="730" cy="760" rx="44" ry="9" fill="#3a5a8a" transform="rotate(-68 730 760)" opacity="0.4"/>
+      <ellipse cx="560" cy="820" rx="40" ry="9" fill="#4a6a9a" transform="rotate(10 560 820)" opacity="0.35"/>
+      <!-- bayas BR -->
+      <circle cx="615" cy="775" r="6" fill="#1a2a5e"/>
+      <circle cx="603" cy="763" r="5" fill="#2a3a70"/>
+      <circle cx="625" cy="787" r="4.5" fill="#1a2a5e"/>
+      <circle cx="590" cy="798" r="4" fill="#2a3a70"/>
+    </g>
+
+    <!-- Elementos flotantes decorativos en los bordes medios -->
+    <g opacity="0.28">
+      <!-- izquierda medio -->
+      <ellipse cx="15" cy="440" rx="25" ry="13" fill="#90b5e0" transform="rotate(15 15 440)"/>
+      <circle cx="15" cy="440" r="8" fill="#5a80c0"/>
+      <ellipse cx="5" cy="480" rx="35" ry="8" fill="#4a6a9a" transform="rotate(5 5 480)"/>
+      <!-- derecha medio -->
+      <ellipse cx="795" cy="430" rx="25" ry="13" fill="#90b5e0" transform="rotate(-15 795 430)"/>
+      <circle cx="795" cy="430" r="8" fill="#5a80c0"/>
+      <ellipse cx="800" cy="470" rx="35" ry="8" fill="#4a6a9a" transform="rotate(-5 800 470)"/>
+    </g>
+
+    <!-- Marco dorado decorativo central (sutil) -->
+    <rect x="280" y="160" width="240" height="580" fill="none" stroke="rgba(200,169,110,0.12)" stroke-width="0.5"/>
+  </svg>
+</div>
+
+<!-- Card principal -->
+<div class="card">
+
+  <!-- Header -->
+  <div class="card-header">
+    <!-- Ornamento SVG -->
+    <div class="ornamento">
+      <svg width="120" height="28" viewBox="0 0 120 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="14" x2="42" y2="14" stroke="rgba(200,205,216,0.5)" stroke-width="0.5"/>
+        <circle cx="52" cy="14" r="3" fill="none" stroke="rgba(200,169,110,0.7)" stroke-width="0.8"/>
+        <circle cx="60" cy="14" r="5" fill="none" stroke="rgba(200,169,110,0.9)" stroke-width="0.8"/>
+        <circle cx="68" cy="14" r="3" fill="none" stroke="rgba(200,169,110,0.7)" stroke-width="0.8"/>
+        <line x1="78" y1="14" x2="120" y2="14" stroke="rgba(200,205,216,0.5)" stroke-width="0.5"/>
+        <circle cx="60" cy="14" r="1.5" fill="rgba(200,169,110,0.8)"/>
+      </svg>
+    </div>
+
+    <div class="nombre-quince">
+      Valentina
+      <span>Postigo Iramain</span>
+    </div>
+
+    <div class="xv-badge">celebra sus quince años</div>
+
+    <!-- Ornamento inferior header -->
+    <div style="margin-top:1.2rem;">
+      <svg width="120" height="16" viewBox="0 0 120 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="8" x2="48" y2="8" stroke="rgba(200,205,216,0.4)" stroke-width="0.5"/>
+        <path d="M54 8 L60 2 L66 8 L60 14 Z" fill="none" stroke="rgba(200,169,110,0.6)" stroke-width="0.7"/>
+        <line x1="72" y1="8" x2="120" y2="8" stroke="rgba(200,205,216,0.4)" stroke-width="0.5"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Separador -->
+  <div class="sep">
+    <div class="sep-line"></div>
+    <div class="sep-icon">✦</div>
+    <div class="sep-line"></div>
+  </div>
+
+  <!-- Body -->
+  <div class="card-body">
+
+    <!-- Fecha -->
+    <div class="fecha-evento">
+      <p>Te esperamos el</p>
+      <strong>Domingo, 21 de Junio de 2026</strong>
+    </div>
+
+    <!-- Formulario -->
+    <div class="field">
+      <label class="lbl">Nombres de los que confirman asistencia</label>
+      <textarea id="nombres_invitados" rows="3" placeholder="Ej: María García, Juan Pérez..." style="border:none;border-bottom:1px solid var(--plateado);background:transparent;width:100%;font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--zafiro);outline:none;padding:0.55rem 0;resize:none;border-radius:0;"></textarea>
+      <div style="font-size:11px;color:var(--plateado);margin-top:0.3rem;font-style:italic;">Separalos con coma si son varios</div>
+    </div>
+
+    <div class="field">
+      <label class="lbl">¿Asistís?</label>
+      <div class="radio-group">
+        <div class="radio-opt">
+          <input type="radio" name="asiste" id="si" value="Confirma asistencia"/>
+          <label for="si">✓ Sí, con mucho gusto</label>
+        </div>
+        <div class="radio-opt">
+          <input type="radio" name="asiste" id="no" value="No puede asistir"/>
+          <label for="no">✗ Lamentablemente no</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lbl">Un deseo para Valentina (opcional)</label>
+      <input type="text" id="mensaje" placeholder="Escribí tu mensaje especial..."/>
+    </div>
+
+    <button class="btn-confirmar" id="btnConfirmar" onclick="confirmarAsistencia()">
+      Confirmar asistencia
+    </button>
+
+    <div class="msg" id="msgOk">
+      ✦ ¡Gracias por confirmar! Tu respuesta fue registrada. ¡Nos vemos el 21 de junio!
+    </div>
+    <div class="msg" id="msgErr">
+      Hubo un error al enviar. Por favor intentá nuevamente o escribinos por WhatsApp.
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="card-footer">
+    <p>Por favor confirmá antes del 10 de junio · Gracias</p>
+  </div>
+
+</div>
+
+<script>
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwsUZ4Kgafeob0tzEGzuBr3YLfMYDcLC4GOce1vLFSuHFGnmO-9PT999B-GvuxDcDBOJQ/exec";
+
+  async function confirmarAsistencia() {
+    var nombre = document.getElementById('nombre').value.trim();
+    var asisteEl = document.querySelector('input[name="asiste"]:checked');
+    var nombresInvitados = document.getElementById('nombres_invitados').value.trim();
+    var mensaje = document.getElementById('mensaje').value.trim();
+
+    document.getElementById('msgOk').style.display = 'none';
+    document.getElementById('msgErr').style.display = 'none';
+
+    if (!nombresInvitados) { alert('Por favor ingresá los nombres de los que confirman.'); return; }
+    if (!asisteEl) { alert('Por favor indicá si podés asistir.'); return; }
+
+    var btn = document.getElementById('btnConfirmar');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    var ahora = new Date();
+    var fecha = ahora.toLocaleDateString('es-PY', {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', timeZone: 'America/Asuncion'
+    });
+
+    var datos = {
+      fecha: fecha,
+      nombres_invitados: nombresInvitados,
+      asiste: asisteEl.value,
+      mensaje: mensaje || '—'
+    };
+
+    try {
+      var formData = new FormData();
+      formData.append('fecha', datos.fecha);
+      formData.append('nombres_invitados', datos.nombres_invitados);
+      formData.append('asiste', datos.asiste);
+      formData.append('mensaje', datos.mensaje);
+
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      });
+      document.getElementById('msgOk').style.display = 'block';
+      document.getElementById('mensaje').value = '';
+      document.getElementById('nombres_invitados').value = '';
+      if (asisteEl) asisteEl.checked = false;
+      btn.textContent = '¡Confirmado! ✦';
+    } catch(e) {
+      document.getElementById('msgErr').style.display = 'block';
+      btn.textContent = 'Confirmar asistencia';
+      btn.disabled = false;
+    }
+  }
+</script>
+</body>
+</html>
